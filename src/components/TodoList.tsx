@@ -11,8 +11,14 @@ import {
 	CardTitle
 } from '@/components/ui/card'
 
+export interface Todo {
+	id: number
+	title: string
+	completed: boolean
+}
+
 export default function TodoList() {
-	const [todos, setTodos] = useState<{ id: number; title: string }[]>([])
+	const [todos, setTodos] = useState<Todo[]>([])
 
 	useEffect(() => {
 		const savedTodos = localStorage.getItem('todos')
@@ -26,12 +32,20 @@ export default function TodoList() {
 	}, [todos])
 
 	const addTodo = (title: string) => {
-		const newTodo = { id: Date.now(), title }
+		const newTodo = { id: Date.now(), title, completed: false }
 		setTodos([...todos, newTodo])
 	}
 
 	const deleteTodo = (id: number) => {
 		setTodos(todos.filter((todo) => todo.id !== id))
+	}
+
+	const completeTodo = (id: number) => {
+		setTodos(
+			todos.map((todo) =>
+				todo.id === id ? { ...todo, completed: true } : todo
+			)
+		)
 	}
 
 	return (
@@ -46,6 +60,7 @@ export default function TodoList() {
 					<Todos
 						todos={todos}
 						deleteTodo={deleteTodo}
+						completeTodo={completeTodo}
 					/>
 				</div>
 			</CardContent>
