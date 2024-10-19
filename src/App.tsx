@@ -1,15 +1,12 @@
 import './App.css'
+import TodoList from './components/TodoList'
 
-import { Button } from './components/ui/button'
-
-function App() {
-
-  return (
-    <>
-      <h1 className='font-bold text-3xl'>Todo App</h1>
-      <Button>Click me</Button>
-    </>
-  )
+export default function App() {
+	return (
+		<>
+			<main className='container mx-auto flex flex-col items-center p-4'>
+				<TodoList />
+			</main>
+		</>
+	)
 }
-
-export default App
