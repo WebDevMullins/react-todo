@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react'
+
+import TodoForm from './TodoForm'
 import Todos from './Todos'
 
 import {
@@ -7,21 +10,28 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import { useState } from 'react'
-import TodoForm from './TodoForm'
 
 export default function TodoList() {
 	const [todos, setTodos] = useState<{ id: number; title: string }[]>([])
 
+	useEffect(() => {
+		const savedTodos = localStorage.getItem('todos')
+		if (savedTodos) {
+			setTodos(JSON.parse(savedTodos))
+		}
+	}, [])
+
+	useEffect(() => {
+		localStorage.setItem('todos', JSON.stringify(todos))
+	}, [todos])
+
 	const addTodo = (title: string) => {
-		const newTodo = [...todos]
-		newTodo.push({ id: todos.length + 1, title: title })
-		setTodos(newTodo)
+		const newTodo = { id: Date.now(), title }
+		setTodos([...todos, newTodo])
 	}
 
 	const deleteTodo = (id: number) => {
-		const newTodo = todos.filter((todo) => todo.id !== id)
-		setTodos(newTodo)
+		setTodos(todos.filter((todo) => todo.id !== id))
 	}
 
 	return (
