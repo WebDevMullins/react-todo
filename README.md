@@ -19,28 +19,31 @@ This is a simple Todo App built with React. It allows users to add, delete, and 
 ### Installation
 
 1. Clone the repository:
+
    ```sh
    git clone https://github.com/WebDevMullins/todo-app.git
-	 ```
+   ```
 
 2. Navigate to the project directory:
-	 ```sh
-	 cd todo-app
-	 ```
+
+   ```sh
+   cd todo-app
+   ```
 
 3. Install dependencies:
-	 ```sh
-	 npm install
-	 # or
-	 yarn install
-	 ```
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
 
 ### Running the App
 
 To start the development server, run:
+
 ```sh
 npm start
-# or 
+# or
 yarn start
 ```
 
@@ -51,6 +54,7 @@ yarn start
 3. Click the trash icon to delete a todo.
 
 ## Built With
- - React
- - Tailwind CSS
- - shadcn/ui
+
+- React
+- Tailwind CSS
+- shadcn/ui
